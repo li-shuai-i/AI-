@@ -1,0 +1,21 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+env/
+
+.pytest_cache/
+.coverage
+htmlcov/
+
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Local food log if someone runs with --data inside the repo
+*.local.json
+data/store.json

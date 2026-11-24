@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: ${{ matrix.os }} / py${{ matrix.python-version }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
+        include:
+          # ubuntu-latest is 26.04 now and no longer ships a 3.9 toolchain.
+          - os: ubuntu-22.04
+            python-version: "3.9"
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Run test suite
+        run: python -m unittest discover -s tests -v
+
+      - name: Install the package
+        run: python -m pip install .
+
+      - name: Check the entry point works
+        run: chizhang --version
+
+      - name: Check static assets shipped with the package
+        shell: python
+        run: |
+          import pathlib, chizhang
+          static = pathlib.Path(chizhang.__file__).parent / "static"
+          for name in ("index.html", "style.css", "app.js"):
+              assert (static / name).is_file(), f"missing {name}"
+          print("static assets ok")
