@@ -27,9 +27,9 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/li-shuai-i/chizhang"
-Source = "https://github.com/li-shuai-i/chizhang"
-Issues = "https://github.com/li-shuai-i/chizhang/issues"
+Homepage = "https://github.com/li-shuai-i/AI-"
+Source = "https://github.com/li-shuai-i/AI-"
+Issues = "https://github.com/li-shuai-i/AI-/issues"
 
 [project.scripts]
 chizhang = "chizhang.cli:main"

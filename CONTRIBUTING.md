@@ -3,7 +3,7 @@
 ## 本地跑起来
 
 ```bash
-git clone https://github.com/li-shuai-i/chizhang.git
+git clone https://github.com/li-shuai-i/AI-.git
 cd chizhang
 python -m chizhang
 ```
